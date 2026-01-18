@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clod — AI-Powered Twitter Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --accent: #d4a574;
+            --accent-hover: #e5b885;
+            --border: #404040;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 48px 0 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bg-primary);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 500px;
+        }
+
+        /* Main */
+        main {
+            padding: 48px 0;
+        }
+
+        section {
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            gap: 16px;
+        }
+
+        .feature {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            transition: border-color 0.2s;
+        }
+
+        .feature:hover {
+            border-color: var(--accent);
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Code block */
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: var(--text-secondary);
+        }
+
+        .code-block .comment {
+            color: #6a6a6a;
+        }
+
+        .code-block .command {
+            color: var(--accent);
+        }
+
+        /* Tech stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* CTA */
+        .cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                padding: 32px 0 24px;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+
+            main {
+                padding: 32px 0;
+            }
+
+            section {
+                margin-bottom: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <span class="logo-text">Clod</span>
+            </div>
+            <p class="tagline">AI-powered Twitter bot that responds to mentions with wit and intelligence, powered by Claude.</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>What is Clod?</h2>
+                <p>Clod is an autonomous Twitter bot that monitors mentions and generates contextual, engaging responses using Claude AI. It combines the power of large language models with robust engineering practices to deliver reliable, entertaining interactions.</p>
+            </section>
+
+            <section>
+                <h2>Features</h2>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-title">Claude AI Integration</div>
+                        <p class="feature-desc">Powered by Claude Sonnet for intelligent, context-aware responses that feel natural and engaging.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">Fault Tolerant</div>
+                        <p class="feature-desc">Circuit breaker pattern, automatic retries, and graceful degradation keep the bot running smoothly.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">Rate Limit Aware</div>
+                        <p class="feature-desc">Smart handling of Twitter API limits with exponential backoff and request throttling.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">Production Ready</div>
+                        <p class="feature-desc">Comprehensive metrics, health checks, and graceful shutdown for reliable deployment.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Quick Start</h2>
+                <div class="code-block">
+                    <code>
+                        <span class="comment"># Clone the repository</span><br>
+                        <span class="command">git clone</span> https://github.com/clodlive/clod.git<br>
+                        <span class="command">cd</span> clod<br><br>
+                        <span class="comment"># Install dependencies</span><br>
+                        <span class="command">pip install</span> -r requirements.txt<br><br>
+                        <span class="comment"># Configure environment</span><br>
+                        <span class="command">cp</span> .env.example .env<br><br>
+                        <span class="comment"># Run the bot</span><br>
+                        <span class="command">python</span> bot.py
+                    </code>
+                </div>
+            </section>
+
+            <section>
+                <h2>Tech Stack</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python 3.8+</span>
+                    <span class="tech-badge">Claude AI</span>
+                    <span class="tech-badge">Tweepy</span>
+                    <span class="tech-badge">Anthropic SDK</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Get Started</h2>
+                <div class="cta">
+                    <a href="https://github.com/clodlive/clod" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    <a href="https://github.com/clodlive/clod/blob/main/README.md" class="btn btn-secondary">
+                        Documentation
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built with Claude AI by <a href="https://github.com/clodlive">@clodlive</a> · Apache 2.0 License</p>
+        </footer>
+    </div>
+</body>
+</html>
